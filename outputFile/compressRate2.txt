@@ -1,0 +1,2 @@
+multipleObjects :  0967.ppm
+2.8981
