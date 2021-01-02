@@ -1,0 +1,26 @@
+outputLevel=v
+#colorspace = ycbcr
+# layer selection method, other allowed value is thresholding
+layer_selection = cumulative
+# external compression algorithm 
+compression_method = zpaq
+# perform overlap pruning?
+overlap_pruning = false
+# allowed radius difference before pruning
+overlap_pruning_epsilon = .05
+encoding = traditional
+# perform bundling?
+bundle = false
+alpha = 1
+epsilon = 5
+SkeletonThreshold =  10
+outputFile = ../imShow/output.sir
+#########################
+filename = ../../TestImage/multipleObjects/0967.ppm
+filenameSM = ../../SaliencyMap/multipleObjects/0967.pgm
+num_layers =  30
+islandThreshold =  0.01
+ssThreshold =  0.1
+flagThreshold =  0
+distinguishable_interval =  7
+smThreshold =  10

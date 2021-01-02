@@ -1,0 +1,3 @@
+bird.pgm
+lena_gray_512.pgm
+peppers.pgm

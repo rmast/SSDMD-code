@@ -1,0 +1,16 @@
+filename = delftsche_slaolie.pgm
+outputLevel=v
+layer_selection = MSIL
+num_layers = 40
+sThreshold = 5
+sdtThreshold = 0
+ssThreshold = 2
+siThreshold = 5
+minObjSize = 3
+minPathLength = 3
+minSumRadius = 3
+outputFile = ./delft.sir
+compression_method = zpaq
+pollard = true
+encoding = traditional
+bundle = false
