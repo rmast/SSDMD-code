@@ -2,8 +2,7 @@ This software package is the technical support for our paper "Focus-and-Context 
 
 The whole pipeline is like this: Given a grayscale image or a color image, we first thresholding it into n (256 for 8-bit images) binary images. For each binary image, or layer that we call, we first remove small 'island' or noise of it, then we extract its skeletons, then we simplify skeletons by using the saliency metric. After that all the skeleton points are stored in the so-called SIR file in the form of a tree. The SIR file is all we need to store for the original image. All of these steps implemented in the imConvert file, and imShow file is responsible for decode the SIR file and then reconstruct it back to the original image.
 
-1. Building
-===========
+# 1. Building
 
 The software needs a C++ compiler, OpenGL, the CUDA, and GLUT to build. 
 
@@ -16,30 +15,38 @@ sudo apt-get install cuda zpaq libzstd-dev libsnappy-dev gcc git make cmake libb
 * to build:
 
 cd Code/imShow && make
+
 cd ../../
+
 cd Code/imConvert && make
 
 
-2. Running
-==========
+# 2. Running
 
 cd Code/imConvert
+
 ./skeletonify config.txt
+
 cd ../imShow
+
 ./show_skeleton output.sir 
 
 where config.txt is a configuration file. The detailed explanation is shown in the last section.
 
 
 I also write a bash script to execute the whole pipeline, named 'benchmark' in the Code file.
+
 What you need to do are: 
+
 (a) Put images that you want to test into TestImage/somefile/someimage.ppm 
+
 (b) Change parameters as you want in this script. These parameters include how many layers do you want to select("layers"), what 'island' threshold do you need("islandThreshold"), what saliency threshold do you need("Saliency"), etc, see the detailed explanation in the 4th section.
+
 (c) Run ./benchmark. Then the compression ratio and the MS-SSIM score can be written into the compressRate2.txt and skeleton_msssim2.txt separately which located in 'outputFile'.
 
 
-3. Function
-======
+# 3. Function
+
 
 imConvert
 ---------
@@ -78,11 +85,11 @@ This function achieves a smooth distance-based interpolation between two neighbo
 * getAlphaMapOfLayer
 This function draws all disks. The alpha will be 1 at the location that should be drawn, otherwise 0. 
 
-4. Other remarks
-======
+# 4. Other remarks
+
 
 As said before, config.txt is a configuration file. The following is a detailed explanation of all parameters:
-----------
+
 * outputLevel
 This parameter controls which type do you want to output in the terminal. Available options are 'q', 'e', 'n' and 'v'. See the main function in detail.
 
@@ -99,10 +106,15 @@ This parameter controls which external compression algorithm do you want to use.
 This one set which encoding method to use. 'traditional' means the delta-encoding method, which has been proved to be an effective algorithm when used with the 'zpaq' external compression. See details in the CDMD paper.
 
 *overlap_pruning = false
+
 *overlap_pruning_epsilon = .05
+
 *bundle = false
+
 *alpha = 1
+
 *epsilon = 5
+
 Because the overlap pruning and bundling techniques are not mature enough, we prefer not to use these two functions.
 
 * outputFile 
