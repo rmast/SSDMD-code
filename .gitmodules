@@ -1,0 +1,3 @@
+[submodule "Code/shared/squash"]
+	path = Code/shared/squash
+	url = https://github.com/quixdb/squash

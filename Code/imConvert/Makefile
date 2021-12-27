@@ -27,12 +27,20 @@ default:all
 
 all:external $(OBJ)
 	$(CXX) $(CPPFLAGS) -o $(OUTFILE) $(OBJ) $(EXTERNAL) $(CUDAFLAGS)
-	
-external:
+
+../shared/configParser/lib/Config.a:
 	make -C ../shared/configParser -f Makefile
-	make -C ../shared/CUDASkel2D -f Makefile skeleton
+
+../shared/squash/squash/libsquash0.8.so:
 	make -C ../shared/squash -f Makefile
+
+../shared/CUDASkel2D/CUDASkel2D.a:
+	make -C ../shared/CUDASkel2D -f Makefile skeleton
+
+../shared/bcl/libbcl.a:
 	make -C ../shared/bcl -f Makefile
+
+external:
 	g++ -g ../shared/FastAC/arithmetic_codec.cpp -c -o ../shared/FastAC/arithmetic_codec.o
 
 library : all
